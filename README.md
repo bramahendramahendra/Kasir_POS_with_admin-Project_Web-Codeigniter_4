@@ -1,5 +1,7 @@
 ## requirements :
 
+Project Web Development - V0.0.1
+
 Peoject Web Development - Codeigniter 4 - Aplikasi Kasir / Point of Sale (POS) with Admin
 
 Tools :
