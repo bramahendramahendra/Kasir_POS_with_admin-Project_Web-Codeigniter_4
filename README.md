@@ -21,3 +21,7 @@ php spark serve
 - https://www.codeigniter.com/user_guide/intro/index.html
 - https://adminlte.io/
 
+## Database
+
+- Local Database name : project_kasir_ci4
+
