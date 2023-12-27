@@ -30,7 +30,28 @@ class Satuan extends BaseController
     {
         $data = ['nama_satuan' => $this->request->getPost('nama_satuan')];
         $this->ModelSatuan->InsertData($data);
-        session()->setFlashdata('pesan', 'Data Berhasil DItambahkan !!');
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!');
+        return redirect()->to('Satuan');
+    }
+
+    public function UpdateData($id_satuan)
+    {
+        $data = [
+            'id_satuan' => $id_satuan,
+            'nama_satuan' => $this->request->getPost('nama_satuan')
+        ];
+        $this->ModelSatuan->UpdateData($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diupdate !!');
+        return redirect()->to('Satuan');
+    }
+
+    public function DeleteData($id_satuan)
+    {
+        $data = [
+            'id_satuan' => $id_satuan,
+        ];
+        $this->ModelSatuan->DeleteData($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Dihapus !!');
         return redirect()->to('Satuan');
     }
 }

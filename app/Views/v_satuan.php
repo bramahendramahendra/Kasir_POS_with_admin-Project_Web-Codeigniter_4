@@ -19,6 +19,7 @@
                 echo session()->getFlashdata('pesan');
                 echo '</h5></div>';
             }
+
             ?>
             <table class="table table-bordered">
                 <thead>
@@ -35,8 +36,8 @@
                             <td><?= $no++ ?></td>
                             <td><?= $value['nama_satuan'] ?></td>
                             <td>
-                                <button class="btn btn-warning btn-sm btn-flat"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-danger btn-sm btn-flat"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-warning btn-sm btn-flat" data-toggle="modal" data-target="#edit-data<?= $value['id_satuan'] ?>"><i class="fas fa-pencil-alt"></i></button>
+                                <button class="btn btn-danger btn-sm btn-flat" data-toggle="modal" data-target="#delete-data<?= $value['id_satuan'] ?>"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                     <?php }?>
@@ -69,7 +70,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-flat">Save changes</button>
+                <button type="submit" class="btn btn-primary btn-flat">Save</button>
             </div>
             <?php echo form_close() ?>
         </div>
@@ -78,3 +79,63 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+<!-- Modal Edit Data -->  
+<?php foreach ($satuan as $key => $value) { ?>
+    <div class="modal fade" id="edit-data<?= $value['id_satuan'] ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Data <?= $subjudul ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php echo form_open('Satuan/UpdateData/'.$value['id_satuan']) ?>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="">Nama Satuan</label>
+                        <input type="text" name="nama_satuan" value="<?= $value['nama_satuan'] ?>" class="form-control" placeholder="Satuan" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning btn-flat">Save</button>
+                </div>
+                <?php echo form_close() ?>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+<?php } ?>
+
+<!-- Modal Hapus Data -->  
+<?php foreach ($satuan as $key => $value) { ?>
+    <div class="modal fade" id="delete-data<?= $value['id_satuan'] ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Data <?= $subjudul ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda Yakin Hapus  <b><?= $value['nama_satuan'] ?></b>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                    <a href="<?= base_url('Satuan/DeleteData/'.$value['id_satuan']) ?>" class="btn btn-danger btn-flat">Delete</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+<?php } ?>
