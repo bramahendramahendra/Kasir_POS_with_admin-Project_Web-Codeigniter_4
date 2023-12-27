@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ModelSatuan extends Model
+class ModelKategori extends Model
 {
-    protected $table            = 'tbl_satuan';
-    protected $primaryKey       = 'id_satuan';
+    protected $table            = 'tbl_kategori';
+    protected $primaryKey       = 'id_kategori';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_satuan'];
+    protected $allowedFields    = ['nama_kategori'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,32 +39,21 @@ class ModelSatuan extends Model
     protected $afterDelete    = [];
 
     public function AllData() {
-        // return $this->db->table('tbl_satuan')
-        //     ->get()
-        //     ->getResultArray();
         return $this->findAll();
     }
 
     public function InsertData($data) 
     {
-        // $this->db->table('tbl_satuan')->insert($data);    
-        return $this->insert($data);
+       return $this->insert($data);   
     }
 
     public function UpdateData($data) 
     {
-        // $this->db->table('tbl_satuan')
-        // ->where('id_satuan', $data['id_satuan'])    
-        // ->update($data);
-
-        return $this->update($data['id_satuan'], $data);
+        return $this->update($data['id_kategori'], $data);
     }
 
      public function DeleteData($data) 
     {
-        // $this->db->table('tbl_satuan')
-        // ->where('id_satuan', $data['id_satuan'])    
-        // ->delete($data);
-        return $this->delete($data['id_satuan']);
+        return $this->delete($data['id_kategori']);
     }
 }
